@@ -1,0 +1,19 @@
+{% extends "guidebook/guidebook.html" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+    			{% include 'guidebook/common/categories.html' with categories=categories %}
+    		</div>
+    		<div class="span6">
+    			<div id="content">
+    				{% include 'guidebook/common/posts.html' with posts=posts %}
+    			</div>
+    		</div>
+    		<div class="span3">
+                {% include 'guidebook/common/countries.html' with countries=countries category=category %}
+            </div>
+		</div>
+	</div>
+{% endblock %}
