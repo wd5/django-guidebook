@@ -40,8 +40,8 @@ class GuidebookPost( CommonPost ):
         help_text = u'source web site full URL',
     )
     is_featured = models.BooleanField( default = 0 )
-    featured_untill = models.DateTimeField( blank = True )
+    featured_untill = models.DateTimeField( blank = True, )
 
 class GuidebookPostImages( CommonPostImage ):
     post = models.ForeignKey( GuidebookPost, default = '', blank = True, null = True, )
-    image = models.ImageField( upload_to = image_upload_to )
+    image = models.ImageField( upload_to = image_upload_to, blank = True, null = True, )

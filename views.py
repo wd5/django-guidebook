@@ -142,7 +142,11 @@ def edit( request, id ):
             post.status = 'active'
             post.save()
 
+            del request.session['guidebook-draft-id'];
+
             return redirect( 'guidebook-post', id = id )
+        else:
+            form = GuidebookEditForm( request.POST, instance = post )
     else:
         form = GuidebookEditForm( instance = post )
 

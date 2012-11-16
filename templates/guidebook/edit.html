@@ -54,22 +54,15 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/plugins/jquery.form.js"></script>
     <script type="text/javascript">
         jQuery(function(){
-            // $('#image-upload-form').ajaxForm({
-                // success:function(data){
-                    // log(data)
-                    // $('<img>')
-                        // .attr('src', data.image.x100)
-                        // .data('x450', data.image.x450)
-                        // .prependTo('#post-images');
-                // }
-            // });
-//             
-            // log($('#id_content').data())
-            
+            $('#image-upload-form').ajaxForm({
+                success:function(data){
+                    $('<img>')
+                        .attr('src', data.image.x100)
+                        .data('x450', data.image.x450)
+                        .prependTo('#post-images');
+                }
+            });
             $('#post-images').find('img').live('click', function(){
-                log('post image click')
-                log($)
-                log($(this), $(this).data())
                 tinymce.execCommand('mceInsertContent', false, '<img src="'+$(this).data('x450')+'" alt="" class="post-image" />');                
             })
         });
