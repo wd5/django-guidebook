@@ -139,7 +139,7 @@ def edit( request, id ):
 
     if request.method == "POST":
         form = GuidebookEditForm( request.POST, instance = post )
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             post.status = 'active'
             post.save()
@@ -165,7 +165,7 @@ def file( request ):
 
     if request.method == "POST":
         form = ImageUploadForm( request.POST, request.FILES )
-        if form.is_valid:
+        if form.is_valid():
             form.save()
     else:
         form = ImageUploadForm( initial = {'post':post} )
