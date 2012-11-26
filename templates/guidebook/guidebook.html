@@ -1,3 +1,16 @@
 {% extends "template.html" %}
 
+{% block module_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}lightbox/css/lightbox.css">
+{% endblock %}
+
 {% block title %} Guidebook / {% endblock %}
+
+
+{% block footer_code %}
+    <script type="text/javascript" src="{{ STATIC_URL }}lightbox/js/lightbox.js"></script>
+    <script type="text/javascript">
+        LightboxOptions.fileLoadingImage = '{{ STATIC_URL }}lightbox/images/loading.gif';
+        LightboxOptions.fileCloseImage = '{{ STATIC_URL }}lightbox/images/close.png';
+    </script>    
+{% endblock %}

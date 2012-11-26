@@ -28,9 +28,11 @@ def image_upload( request ):
         },
         'image':{
             'id':image.id,
+            'description':image.description,
             'x100':image.x100.url,
             'x150':image.x150.url,
             'x450':image.x450.url,
+            'x650':image.x650.url,
         },
     }
 

@@ -143,8 +143,10 @@ def edit( request, id ):
             form.save()
             post.status = 'active'
             post.save()
-
-            del request.session['guidebook-draft-id']
+            try:
+                del request.session['guidebook-draft-id']
+            except:
+                pass
 
             return redirect( 'guidebook-post', id = id )
 
