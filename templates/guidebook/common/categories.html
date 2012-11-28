@@ -1,12 +1,19 @@
 <div id="categories">
     {% load mptt_tags %}
-    <ul>
-    	{% if categories %}
+    <ul class="nav nav-list">
+        {% if categories %}
             {% recursetree categories %}
-                <li>
+                <li
+                    id="category-{{ node.id }}"
+                     {% if category %}
+                        {% if category.id == node.id %}
+                            class="active"
+                        {% endif %}
+                    {% endif %}
+                >
                     <a href="{% url guidebook-category id=node.id slug=node.slug %}">{{ node.title }}</a>
                     {% if not node.is_leaf_node %}
-                        <ul class="children">
+                        <ul class="nav nav-list children level-{{ node.level }}" style="display: none;">
                             {{ children }}
                         </ul>
                     {% endif %}
@@ -15,3 +22,22 @@
         {% endif %}
     </ul>
 </div>
+
+<script type="text/javascript">
+    ;(function(w, $){        
+        "use strict";
+        {% if category %}
+            $(function(){
+                var parent = $('#category-{{ category.id }}')
+                    .parents('ul.level-0');
+                parent
+                    .show()
+                    .find('ul.children')
+                        .show();
+                $('#category-{{ category.id }}')
+                    .find('ul.children')
+                        .show();
+            });
+        {% endif %}
+    })(window, jQuery || django.jQuery);
+</script>
