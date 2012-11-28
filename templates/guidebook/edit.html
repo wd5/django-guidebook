@@ -39,15 +39,23 @@
 						</div>
 					</form>
 	    		</div>
+	    		
 	    		<div class="well" id="post-images">
 	    		   <ul class="thumbnails">
                         {% for image in images %}
                             {% if image %}
-                            <li data-id="{{ image.id }}" data-x450="{{ image.x450.url }}" data-x650="{{ image.x650.url }}" data-x250="{{ image.x250.url }}" data-title="{{ image.description }}" >
-                                <a href="#" class="thumbnail">
-                                    <img src="{{ image.x138.url }}" data-x450="{{ image.x450.url }}" />
-                                </a>
-                            </li>
+                                <li
+                                    data-id="{{ image.id }}"
+                                    data-post_id="{{ post.id }}"
+                                    data-x450="{{ image.x450.url }}"
+                                    data-x650="{{ image.x650.url }}"
+                                    data-x250="{{ image.x250.url }}"
+                                    data-title="{{ image.description }}"
+                                >
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{ image.x138.url }}" />
+                                    </a>
+                                </li>
                             {% endif %}
                         {% empty %}
                         {% endfor %}
@@ -59,7 +67,23 @@
 {% endblock %}
 
 {% block footer_code %}
+
+    
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/plugins/jquery.form.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/libs/class.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/mylibs/uploadimage.js"></script>
+    <script type="text/javascript">
+        ;(function($){
+            "use strict";
+            $(function(){
+                var uploadImages = new window.uploadImages({
+                    
+                });
+            });
+        })(jQuery || django.jQuery);
+    </script>
+    
+    {% comment %}
     <script type="text/javascript">
         jQuery(function(){
             LightboxOptions.fileLoadingImage = '{{ STATIC_URL }}lightbox/images/loading.gif';
@@ -132,4 +156,5 @@
             })
         });
     </script>
+    {% endcomment %}
 {% endblock %}
