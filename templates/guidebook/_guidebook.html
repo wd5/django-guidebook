@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+
+{% block module_style %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}pirobox/css/style_2/style.css">
+{% endblock %}
+
+{% block title %} Guidebook / {% endblock %}
+
+{% block footer_code %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}pirobox/js/pirobox_extended_min.js"></script>
+    <script type="text/javascript">
+        ;(function(w, $){
+            $(function(){
+                $().piroBox_ext({
+                    piro_speed : 700,
+                    bg_alpha : 0.7,
+                    piro_scroll : true // pirobox always positioned at the center of the page
+                });
+            });
+        })(window, jQuery || django.jQuery);
+    </script>        
+{% endblock %}
