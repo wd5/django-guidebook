@@ -41,6 +41,7 @@ class GuidebookPost( CommonPost ):
     )
     is_featured = models.BooleanField( default = 0 )
     featured_untill = models.DateTimeField( blank = True, )
+    image = models.ForeignKey( 'GuidebookPostImages', blank = True, default = '', null = True, )
 
 class GuidebookPostImages( CommonPostImage ):
     post = models.ForeignKey( GuidebookPost, default = '', blank = True, null = True, )

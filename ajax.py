@@ -31,6 +31,8 @@ def image_upload( request ):
             'description':image.description,
             'x100':image.x100.url,
             'x150':image.x150.url,
+            'x138':image.x138.url,
+            'x250':image.x250.url,
             'x450':image.x450.url,
             'x650':image.x650.url,
         },

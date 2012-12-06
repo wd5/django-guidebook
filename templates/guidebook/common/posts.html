@@ -1,8 +1,15 @@
-	{% load i18n %}
-	{% for post in posts %}
-		<div>
-			<h2><a href="{% url guidebook-post id=post.id slug=post.slug %}">{{ post.title }}</a></h2>
-			<p>{{ post.snippet }}</p>
+    {% load i18n %}
+    {% for post in posts %}
+        <div>
+        	<h2><a href="{% url guidebook-post id=post.id slug=post.slug %}">{{ post.title }}</a></h2>
+			<div class="clearfix">
+			    {% if post.image %}
+			         <a href="{% url guidebook-post id=post.id slug=post.slug %}" class="thumbnail" style="width:150px; float: left; text-align: center; margin:0px 5px 5px 0px;">
+                        <img src="{{ post.image.x150.url }}" title="{{ post.image.description }}">
+                    </a>
+			    {% endif %}
+                <p>{{ post.snippet }}</p>
+			</div>
 		</div>
 	{% empty %}
 		<div class="alert alert-info">
