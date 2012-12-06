@@ -7,9 +7,9 @@ from django.db.models import ObjectDoesNotExist
 from django.http import Http404, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-#from django.views.decorators.cache import cache_page
+# from django.views.decorators.cache import cache_page
 
-#from . import settings
+# from . import settings
 from . models import GuidebookPost, GuidebookCategory, GuidebookPostImages
 from . forms import GuidebookEditForm, ImageUploadForm
 from common.utils import log
@@ -54,6 +54,10 @@ def get_posts( category = None, country = None, city = None, page = None ):
         posts = paginator.page( paginator.num_pages )
 
     return posts
+
+def get_common_data():
+    data = {}
+    return data
 
 def home( request, country = None, city = None, page = None ):
 

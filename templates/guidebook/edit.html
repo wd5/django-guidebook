@@ -2,9 +2,11 @@
 
 {% load bootstrap %}
 {% load staticfiles %}
+{% load i18n %}
+
 
 {% block header_code %}
-	{{ form.media }}
+    {{ form.media }}	
 	<link rel="stylesheet" href="{% static 'css/edit.css' %}">
 	
 {% endblock %}
@@ -77,84 +79,18 @@
             "use strict";
             $(function(){
                 var uploadImages = new window.uploadImages({
-                    
+                	url:{
+                	   'primary':'{% url guidebook-ajax-primary %}'	
+                	}                    
+                    , 'csrf_token':'{{ csrf_token }}'
+                    , 'post_id':{{ post.id }}
+                    , lang:{
+                    	'insert':'{% trans 'insert' %}'
+                    	, 'primary': '{% trans 'primary' %}'
+                    	, 'delete': '{% trans 'delete' %}'
+                    }
                 });
             });
         })(jQuery || django.jQuery);
-    </script>
-    
-    {% comment %}
-    <script type="text/javascript">
-        jQuery(function(){
-            LightboxOptions.fileLoadingImage = '{{ STATIC_URL }}lightbox/images/loading.gif';
-            LightboxOptions.fileCloseImage = '{{ STATIC_URL }}lightbox/images/close.png';
-            $('#image-upload-form').ajaxForm({
-                success:function(data){
-                        $('#post-images .thumbnails').prepend(function(){
-                            return $('<li/>')
-                                .data('id', data.image.id)
-                                .data('title', data.image.description)
-                                .data('x250', data.image.x250)
-                                .data('x450', data.image.x450)
-                                .data('x650', data.image.x650)
-                                .append(function(){
-                                    return $('<a href="#" class="thumbnail"/>')
-                                        .append(function(){
-                                            return $('<img/>')
-                                                .attr('src', data.image.x138);
-                                        });
-                                });
-                        });
-                    }
-            });
-            
-            $('#post-images li')
-                    .live('mouseenter', function(){
-                        var self = $(this);
-                        $(this)                            
-                            .append(function(){
-                                if( ! $('.image-link-block', $(this)).size())                                    
-                                {
-                                    var d = $('<div class="image-link-block" />')
-                                        .append(function(){
-                                            return $('<a class="btn" />')
-                                                .text('insert')
-                                                .on('click', function(){
-                                                    tinymce.execCommand('mceInsertContent', false, '<a href="'+self.data('x650')+'" rel="lightbox[post-{{ post.id }}]" title="' + self.data('title') + '"><img src="'+self.data('x250')+'" alt="" data-original="" class="post-image lazy" /></a>');
-                                                });
-                                        })
-                                        .append(function(){
-                                            return $('<a class="btn" />')
-                                                .text('primary')
-                                                .on('click', function(){
-                                                    $.post('{% url catalog-ajax-primary %}', {
-                                                        post_id:'{{ post.id }}',
-                                                        image_id:self.data('id'),
-                                                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                                                    }, function(data){
-                                                        
-                                                    });
-                                                });
-                                        })
-                                        .append(function(){
-                                            return $('<a class="btn" />')
-                                                .text('delete')
-                                        });
-                                        
-                                    return d;
-                                }
-                            });
-                    })
-                    .live('mouseleave', function(){                        
-                        if( $('.image-link-block', $(this)).size() )
-                        {
-                            $('.image-link-block', $(this)).remove();
-                        }
-                    });
-            $('#post-images').find('img').live('click', function(){
-                tinymce.execCommand('mceInsertContent', false, '<img src="'+$(this).data('x450')+'" alt="" class="post-image" />');                
-            })
-        });
-    </script>
-    {% endcomment %}
+    </script>    
 {% endblock %}

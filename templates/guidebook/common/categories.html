@@ -1,4 +1,4 @@
-<div id="categories">
+<div id="categories" class="side-nav">
     {% load mptt_tags %}
     <ul class="nav nav-list">
         {% if categories %}
@@ -23,8 +23,9 @@
     </ul>
 </div>
 
+{% comment %}
 <script type="text/javascript">
-    ;(function(w, $){        
+    ;(function(w, $){
         "use strict";
         {% if category %}
             $(function(){
@@ -41,3 +42,4 @@
         {% endif %}
     })(window, jQuery || django.jQuery);
 </script>
+{% endcomment %}

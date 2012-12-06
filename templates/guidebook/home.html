@@ -4,15 +4,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="span3">
-    			{% include 'guidebook/common/categories.html' with categories=categories %}
+    			{% include 'guidebook/common/categories.html' %}
     		</div>
     		<div class="span6">
     			<div id="content">
-    				{% include 'guidebook/common/posts.html' with posts=posts %}
+    				{% include 'guidebook/common/posts.html' %}
     			</div>
     		</div>
     		<div class="span3">
-                {% include 'guidebook/common/countries.html' with countries=countries category=category %}
+                {% include 'guidebook/common/countries.html' %}
             </div>
 		</div>
 	</div>

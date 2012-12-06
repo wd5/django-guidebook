@@ -8,6 +8,7 @@ urlpatterns = patterns( 'guidebook',
     url( r'^post-(?P<id>\d+)(?:\-(?P<slug>[\w\-]+))?', 'views.post', name = 'guidebook-post' ),
     url( r'^file/$', 'views.file', name = 'guidebook-file' ),
     url( r'^ajax/image-upload/$', 'ajax.image_upload', name = 'guidebook-ajax-image-upload' ),
+    url( r'^ajax/primary/$', 'ajax.primary', name = 'guidebook-ajax-primary' ),
     url( r'^(?:loc\-(?P<country>all|\d+))?(?:\:(?P<city>\d+))?(?:/?page-(?P<page>\d+))?', 'views.home', name = 'guidebook-home' ),
  )
 
