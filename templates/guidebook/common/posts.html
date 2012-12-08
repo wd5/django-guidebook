@@ -1,4 +1,4 @@
-    {% load i18n %}
+
     {% for post in posts %}
         <div>
         	<h2><a href="{% url guidebook-post id=post.id slug=post.slug %}">{{ post.title }}</a></h2>
@@ -12,8 +12,5 @@
 			</div>
 		</div>
 	{% empty %}
-		<div class="alert alert-info">
-			{% trans 'no entries' %}
-		</div>
-		{% include 'common/google-search.html' %}
+		{% include 'common/no-entries.html' %}
 	{% endfor %}
