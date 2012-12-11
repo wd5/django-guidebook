@@ -6,14 +6,16 @@
 
 
 {% block header_code %}
-    {{ form.media }}	
+	{{ form.media }}
 	<link rel="stylesheet" href="{% static 'css/edit.css' %}">
-	
+	<script type="text/javascript">
+		document.domain = document.domain;
+	</script>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-    	<div class="row">
+	<div class="container">
+		<div class="row">
     		<div class="span8">
     			<div class="well">
 	    			<form action="" method="post">
@@ -37,11 +39,11 @@
 							{% for hidden in form.hidden_fields %}
 			    				{{ hidden }}
 			    			{% endfor %}
-							<input type="submit" value="submit">
+							<input type="submit" value="{% trans 'submit' %}" class="btn">
 						</div>
 					</form>
 	    		</div>
-	    		
+
 	    		<div class="well" id="post-images">
 	    		   <ul class="thumbnails">
                         {% for image in images %}
@@ -69,8 +71,6 @@
 {% endblock %}
 
 {% block footer_code %}
-
-    
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/plugins/jquery.form.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/libs/class.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/mylibs/uploadimage.js"></script>
@@ -80,8 +80,8 @@
             $(function(){
                 var uploadImages = new window.uploadImages({
                 	url:{
-                	   'primary':'{% url guidebook-ajax-primary %}'	
-                	}                    
+                	   'primary':'{% url guidebook-ajax-primary %}'
+                	}
                     , 'csrf_token':'{{ csrf_token }}'
                     , 'post_id':{{ post.id }}
                     , lang:{
@@ -92,5 +92,5 @@
                 });
             });
         })(jQuery || django.jQuery);
-    </script>    
+    </script>
 {% endblock %}
