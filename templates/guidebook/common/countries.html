@@ -4,23 +4,23 @@
             <ul class="nav nav-list">
                 {% if category %}
                     <li>
-                        <a href="{% url guidebook-category id=category.id slug=category.slug %}" class="clear-location"> clean location </a>
+                        <a href="{% url 'guidebook-category' id=category.id slug=category.slug %}" class="clear-location"> clean location </a>
                     </li>
                     <li class="active">
-                        <a href="{% url guidebook-category id=category.id slug=category.slug country=country.id %}">{{ country.name }}</a>
+                        <a href="{% url 'guidebook-category' id=category.id slug=category.slug country=country.id %}">{{ country.name }}</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url guidebook-home %}" class="clear-location"> clean location </a>
+                        <a href="{% url 'guidebook-home' %}" class="clear-location"> clean location </a>
                     </li>
                     <li class="active">
-                        <a href="{% url guidebook-home country=c.id %}">{{ c.name }}</a>
+                        <a href="{% url 'guidebook-home' country=c.id %}">{{ c.name }}</a>
                     </li>
                 {% endif %}
                 <ul class="nav nav-list">
                     {% for ci in cities  %}
                         <li {% if ci.id == city.id %}class="active"{% endif %}>
-                            <a href="{% url guidebook-category id=category.id slug=category.slug country=country.id city=ci.id  %}">{{ ci.name }}</a>
+                            <a href="{% url 'guidebook-category' id=category.id slug=category.slug country=country.id city=ci.id  %}">{{ ci.name }}</a>
                         </li>
                     {% endfor %}
                     
@@ -31,9 +31,9 @@
                 {% for c in countries  %}
                    <li {% if c.id == country.id %}class="active"{% endif %}>
                        {% if category %}
-                           <a href="{% url guidebook-category id=category.id slug=category.slug country=c.id %}">{{ c.name }}</a>                
+                           <a href="{% url 'guidebook-category' id=category.id slug=category.slug country=c.id %}">{{ c.name }}</a>
                        {% else %}
-                           <a href="{% url guidebook-home country=c.id %}">{{ c.name }}</a>
+                           <a href="{% url 'guidebook-home' country=c.id %}">{{ c.name }}</a>
                        {% endif %}
                    </li>
                 {% endfor %}

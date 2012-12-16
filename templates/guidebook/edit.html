@@ -32,7 +32,7 @@
     		</div>
     		<div class="span4">
     			<div class="well">
-    				<form action="{% url guidebook-ajax-image-upload %}" id="image-upload-form" method="post" enctype="multipart/form-data">
+    				<form action="{% url 'guidebook-ajax-image-upload' %}" id="image-upload-form" method="post" enctype="multipart/form-data">
     					{{ image_upload_form|bootstrap }}
     					<div class="form-actions">
 							{% csrf_token %}
@@ -80,7 +80,7 @@
             $(function(){
                 var uploadImages = new window.uploadImages({
                 	url:{
-                	   'primary':'{% url guidebook-ajax-primary %}'
+                	   'primary':'{% url 'guidebook-ajax-primary' %}'
                 	}
                     , 'csrf_token':'{{ csrf_token }}'
                     , 'post_id':{{ post.id }}
